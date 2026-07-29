@@ -26,10 +26,39 @@ public class Cycle_Detection {
     }
 
 
+    public static boolean isCyclicDirected(ArrayList<Edge>graph[],boolean vis[] , int curr, boolean rec[]){
+        vis[curr] = true;
+        rec[curr] = true;
+        for (int i = 0; i<graph[curr].size();i++){
+            Edge e = graph[curr].get(i);
+            if(rec[e.dest]){
+                return true;
+            } else if (!vis[e.dest]) {
+                if(!isCyclicDirected(graph,vis,e.dest,rec)) {  // change is need
+                    return true;
+                }
+            }
+        }
+        rec[curr] = false;
+        return false;
+    }
     public static void main(String[] args) {
 
         int V = 4;
         ArrayList<Edge>graph[] = new ArrayList[V];
         createGraph(graph);
+        boolean vis[] = new boolean[V];
+        boolean rec[] = new boolean[V];
+
+        for(int i = 0;i<V;i++){
+            if(!vis[i]){
+             //   System.out.println(isCyclicDirected(graph,vis,0,rec));
+                boolean isCyclic = isCyclicDirected(graph,vis,0,rec);
+                if(isCyclic){
+                    System.out.print(isCyclic);
+                    break;
+                }
+            }
+        }
     }
 }

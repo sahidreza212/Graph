@@ -38,7 +38,14 @@ public class DSF {
 
         graph[6].add(new DSF.Edge(6,5));
     }
-
+public static void dfs(ArrayList<Edge>graph[],int curr,boolean vis[]){
+    System.out.print(curr+" ");
+    vis[curr] =true;
+    for(int i = 0;i<graph[curr].size();i++){
+        Edge e = graph[curr].get(i);
+        dfs(graph,e.dest,vis);
+    }
+}
     public static void main(String[] args) {
 
         int V = 7;

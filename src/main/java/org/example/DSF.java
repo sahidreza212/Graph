@@ -43,7 +43,10 @@ public static void dfs(ArrayList<Edge>graph[],int curr,boolean vis[]){
     vis[curr] =true;
     for(int i = 0;i<graph[curr].size();i++){
         Edge e = graph[curr].get(i);
-        dfs(graph,e.dest,vis);
+        if(!vis[e.dest]){
+            dfs(graph,e.dest,vis);
+        }
+
     }
 }
     public static void main(String[] args) {
@@ -51,5 +54,12 @@ public static void dfs(ArrayList<Edge>graph[],int curr,boolean vis[]){
         int V = 7;
         ArrayList<Edge>graph[] = new ArrayList[V];
         createGraph(graph);
+        boolean vis[] = new boolean[V];
+        for (int i = 0;i<V;i++){
+            if(vis[i] == false){
+                dfs(graph,i,vis);
+            }
+        }
+        System.out.println();
     }
 }

@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class Topological_Sorting {
     public static class Edge{
@@ -12,21 +13,33 @@ public class Topological_Sorting {
         }
     }
 
-    public static void createGraph(ArrayList<Cycle_Detection.Edge> graph[]){
+    public static void createGraph(ArrayList<Edge> graph[]){
         for (int i = 0;i<graph.length;i++){
             graph[i] = new ArrayList<>();
         }
-        graph[1].add(new Cycle_Detection.Edge(1,2));
+        graph[1].add(new Edge(1,2));
 
-        graph[2].add(new Cycle_Detection.Edge(2,3));
-        graph[2].add(new Cycle_Detection.Edge(2,4));
+        graph[2].add(new Edge(2,3));
+        graph[2].add(new Edge(2,4));
 
-        graph[3].add(new Cycle_Detection.Edge(3,5));
+        graph[3].add(new Edge(3,5));
 
-        graph[4].add(new Cycle_Detection.Edge(4,5));
+        graph[4].add(new Edge(4,5));
 
     }
+    public static void topoSortUtil(ArrayList<Edge>graph[], boolean vis[], int curr, Stack<Integer>stack){
+        vis[curr] = true;
+        for(int i = 0;i<graph[curr].size();i++){
+            Edge e = graph[curr].get(i);
+            if(!vis[e.dest]){
+                topoSortUtil(graph,vis,e.dest,stack);
+            }
+        }
+        stack.push(curr);
+    }
     public static void main(String[] args) {
-
+      int V = 5;
+      ArrayList<Edge>graph[] = new ArrayList[V];
+      createGraph(graph);
     }
 }

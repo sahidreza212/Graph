@@ -37,9 +37,22 @@ public class Topological_Sorting {
         }
         stack.push(curr);
     }
+    public static void topSort(ArrayList<Edge>graph[],int V){
+        boolean vis[] = new boolean[V];
+        Stack<Integer>stack = new Stack<>();
+        for(int i = 0;i<V;i++){
+            if(!vis[i]){
+                topoSortUtil(graph,vis,i,stack);
+            }
+        }
+        while (!stack.isEmpty()){
+            System.out.print(stack.pop()+" ");
+        }
+    }
     public static void main(String[] args) {
-      int V = 5;
+      int V = 6;
       ArrayList<Edge>graph[] = new ArrayList[V];
       createGraph(graph);
+      topSort(graph,V);
     }
 }

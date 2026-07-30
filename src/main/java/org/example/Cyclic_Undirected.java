@@ -34,11 +34,27 @@ public class Cyclic_Undirected {
 
         graph[5].add(new Edge(5,4));
     }
-
+public static boolean isCyclicUndirected(ArrayList<Edge>graph[],boolean vis[],int curr, int parent){
+        vis[curr] = true;
+        for(int i = 0;i<graph[curr].size();i++){
+            Edge e = graph[curr].get(i);
+            if(vis[e.dest] && parent != e.dest){
+                return true;
+            } else if (!vis[e.dest]) {
+              if(  isCyclicUndirected(graph,vis,e.dest,curr)){
+                  return true;
+              }
+            }
+        }
+        return false;
+}
     public static void main(String[] args) {
-
+/*
         int V = 6;
         ArrayList<Edge>graph[] = new ArrayList[V];
         createGraph(graph);
+        System.out.print(isCyclicUndirected(graph,new boolean[V],0,-1));
+
+ */
     }
 }

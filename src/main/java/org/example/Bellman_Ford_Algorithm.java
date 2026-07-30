@@ -29,6 +29,32 @@ public class Bellman_Ford_Algorithm {
 
         graph[4].add(new Edge(4,1,-1));
     }
+
+    public static void bellmanFordAlgorithm(ArrayList<Edge>graph[],int src,int  V){
+        int dist[] = new int[V];
+        for(int i = 0;i<V;i++){
+            if(i != src){
+                dist[i] = Integer.MAX_VALUE;
+            }
+        }
+        for (int k = 0;k<V-1;k++){
+            for(int i = 0;i<V;i++){
+                for(int j = 0;j<graph[i].size();i++){
+                    Edge e = graph[i].get(j);
+                    int u = e.src;
+                    int v = e.dest;
+
+                    if(dist[u] != Integer.MAX_VALUE && dist[u]+e.wt < dist[v]){
+                        dist[v] = dist[u]+e.wt;
+                    }
+                }
+            }
+        }
+        for(int i = 0;i<V;i++){
+            System.out.print(dist[i]+" ");
+        }
+        System.out.println();
+    }
     public static void main(String[] args) {
 
         int V = 5;

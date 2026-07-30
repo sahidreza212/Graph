@@ -39,7 +39,7 @@ public class Bellman_Ford_Algorithm {
         }
         for (int k = 0;k<V-1;k++){
             for(int i = 0;i<V;i++){
-                for(int j = 0;j<graph[i].size();i++){
+                for(int j = 0;j<graph[i].size();j++){
                     Edge e = graph[i].get(j);
                     int u = e.src;
                     int v = e.dest;
@@ -60,5 +60,6 @@ public class Bellman_Ford_Algorithm {
         int V = 5;
         ArrayList<Edge>graph[] = new ArrayList[V];
         createGraph(graph);
+        bellmanFordAlgorithm(graph,0,V);
     }
 }

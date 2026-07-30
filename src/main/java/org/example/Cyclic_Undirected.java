@@ -49,12 +49,12 @@ public static boolean isCyclicUndirected(ArrayList<Edge>graph[],boolean vis[],in
         return false;
 }
     public static void main(String[] args) {
-/*
+
         int V = 6;
         ArrayList<Edge>graph[] = new ArrayList[V];
         createGraph(graph);
         System.out.print(isCyclicUndirected(graph,new boolean[V],0,-1));
 
- */
+
     }
 }

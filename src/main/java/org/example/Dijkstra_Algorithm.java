@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.PriorityQueue;
 
 public class Dijkstra_Algorithm {
     public static class Edge{
@@ -43,10 +44,45 @@ public class Dijkstra_Algorithm {
             return this.dist - p2.dist;
         }
     }
+    public static void dijkstra(ArrayList<Edge>graph[],int src, int V){
+        PriorityQueue<Pair>pq = new PriorityQueue<>();
+        int dist[] = new int[V];
+        for(int i = 0;i<V;i++){
+            if(i != src){
+                dist[i] = Integer.MAX_VALUE;
+            }
+        }
+        boolean vis[] = new boolean[V];
+
+        pq.add(new Pair(0,0));
+        while (!pq.isEmpty()){
+            Pair curr = pq.remove();
+            if(!vis[curr.node]){
+                vis[curr.node] = true;
+
+                for(int i = 0;i<graph[curr.node].size();i++){
+                    Edge e = graph[curr.node].get(i);
+
+                    int u = e.src;
+                    int v = e.dest;
+
+                    if(dist[u]+e.wt < dist[v]){
+                        dist[v] = dist[u]+e.wt;
+                        pq.add(new Pair(v,dist[v]));
+                    }
+                }
+            }
+        }
+        for(int i = 0;i<V;i++){
+            System.out.print(dist[i]+" ");
+        }
+        System.out.println();
+    }
     public static void main(String[] args) {
 
         int V = 6;
         ArrayList<Edge>graph[] = new ArrayList[V];
         createGraph(graph);
+        dijkstra(graph,0,V);
     }
 }

@@ -30,6 +30,19 @@ public class Dijkstra_Algorithm {
         graph[4].add(new Edge(4,3,2));
         graph[4].add(new Edge(4,5,5));
     }
+    // --> most impotent part is Comparable interface
+    public static class Pair implements Comparable<Pair>{
+        int node;
+        int dist;
+        public Pair(int n , int d){
+            this.node = n;
+            this.dist = d;
+        }
+        @Override
+        public int compareTo(Pair p2) {
+            return this.dist - p2.dist;
+        }
+    }
     public static void main(String[] args) {
 
         int V = 6;

@@ -15,6 +15,21 @@ public class Prims_Algorithm {
         }
     }
 
+    public static class Pair implements Comparable<Pair>{
+        int node;
+        int cost;
+
+        public Pair(int n,int c){
+            this.node = n;
+            this.cost = c;
+        }
+
+        @Override
+        public int compareTo(Pair p2) {
+            return this.cost - p2.cost;
+        }
+    }
+
     public static void createGraph(ArrayList<Edge>graph[]){
         for (int i = 0;i< graph.length;i++){
             graph[i] = new ArrayList<>();
@@ -33,6 +48,8 @@ public class Prims_Algorithm {
         graph[3].add(new Edge(3,1,40));
         graph[3].add(new Edge(3,2,50));
     }
+
+
     public static void main(String[] args) {
 
         int V = 4;

@@ -50,17 +50,32 @@ public class Prims_Algorithm {
         graph[3].add(new Edge(3,2,50));
     }
 
-public static void primsAlgo(ArrayList<Edge>graph,int V){
+public static void primsAlgo(ArrayList<Edge>graph[],int V){
     PriorityQueue<Pair>pq = new PriorityQueue<>();
     boolean vis[] = new boolean[V];
     pq.add(new Pair(0,0));
     int mstCost = 0;
+    while (!pq.isEmpty()){
+        Pair curr = pq.remove();
+        if(!vis[curr.node]){
+            vis[curr.node] = true;
+            mstCost += curr.cost;
+            for(int i = 0;i<graph[curr.node].size();i++){
+                Edge e = graph[curr.node].get(i);
 
+                if(!vis[e.dest]){
+                    pq.add(new Pair(e.dest, e.wt));
+                }
+            }
+        }
+    }
+    System.out.println("mim cost of mst : "+mstCost);
 }
     public static void main(String[] args) {
 
         int V = 4;
         ArrayList<Edge>graph[] = new ArrayList[V];
         createGraph(graph);
+        primsAlgo(graph,V);
     }
 }

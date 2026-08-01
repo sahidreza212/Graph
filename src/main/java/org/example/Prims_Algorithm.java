@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.PriorityQueue;
 
 public class Prims_Algorithm {
     public static class Edge{
@@ -49,7 +50,13 @@ public class Prims_Algorithm {
         graph[3].add(new Edge(3,2,50));
     }
 
+public static void primsAlgo(ArrayList<Edge>graph,int V){
+    PriorityQueue<Pair>pq = new PriorityQueue<>();
+    boolean vis[] = new boolean[V];
+    pq.add(new Pair(0,0));
+    int mstCost = 0;
 
+}
     public static void main(String[] args) {
 
         int V = 4;

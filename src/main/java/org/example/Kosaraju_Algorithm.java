@@ -48,6 +48,19 @@ public class Kosaraju_Algorithm {
                 topSort(graph,i,vis,s);
             }
         }
+
+        // step 2
+
+        ArrayList<Edge>transpose[] = new ArrayList[V];
+        for (int i = 0;i< graph.length;i++){
+            graph[i] = new ArrayList<>();
+        }
+        for (int i = 0; i<V;i++){
+            for (int j = 0; j<graph[i].size();i++){
+              Edge e = graph[i].get(i);
+              transpose[e.dest].add(new Edge(e.dest,e.src));
+            }
+        }
     }
     public static void main(String[] args) {
       int V = 5;

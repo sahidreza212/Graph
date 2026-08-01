@@ -38,6 +38,10 @@ public class Kosaraju_Algorithm {
         }
         s.push(curr);
     }
+
+    public static void dfs(ArrayList<Edge>graph[],int curr,boolean vis[]){
+
+    }
     public static void kosarajuAlgo(ArrayList<Edge>graph[], int V){
 
         // step 1
@@ -59,6 +63,15 @@ public class Kosaraju_Algorithm {
             for (int j = 0; j<graph[i].size();i++){
               Edge e = graph[i].get(i);
               transpose[e.dest].add(new Edge(e.dest,e.src));
+            }
+        }
+
+        // step 3
+        while (!s.isEmpty()){
+            int curr = s.pop();
+            if(!vis[curr]){
+                dfs(transpose,curr,vis);
+                System.out.println();
             }
         }
     }

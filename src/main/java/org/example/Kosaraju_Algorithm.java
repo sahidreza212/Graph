@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class Kosaraju_Algorithm {
     public static class Edge{
@@ -24,6 +25,29 @@ public class Kosaraju_Algorithm {
         graph[2].add(new Edge(2,1));
 
         graph[3].add(new Edge(3,4));
+    }
+
+    public static void topSort(ArrayList<Edge>graph[],int curr,boolean vis[],Stack<Integer>s){
+        vis[curr] = true;
+        for (int i = 0;i<graph[curr].size();i++){
+            Edge e = graph[curr].get(i);
+
+            if(!vis[e.dest]){
+                topSort(graph,e.dest,vis,s);
+            }
+        }
+        s.push(curr);
+    }
+    public static void kosarajuAlgo(ArrayList<Edge>graph[], int V){
+
+        // step 1
+        Stack<Integer>s = new Stack<>();
+        boolean vis [] = new boolean[V];
+        for(int i = 0;i<V;i++){
+            if(!vis[i]){
+                topSort(graph,i,vis,s);
+            }
+        }
     }
     public static void main(String[] args) {
       int V = 5;

@@ -71,11 +71,17 @@ public class Articulation_Point {
                 dfs(graph,i,dt,low,time,vis,ap,-1);
             }
         }
+        for(int i = 0;i < V;i++){
+            if(ap[i]){
+                System.out.println("Ap is: "+i);
+            }
+        }
     }
     public static void main(String[] args) {
 
         int V = 5;
         ArrayList<Edge>graph[] = new ArrayList[V];
         createGraph(graph);
+        getAP(graph,V);
     }
 }

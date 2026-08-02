@@ -45,7 +45,7 @@ public class Bridge_In_Graph {
                 dfs(graph,e.dest,vis,dt,low,time,curr);
                 low[curr] = Math.min(low[curr],low[e.dest]);
                  if(dt[curr] < low[e.dest]){
-                     System.out.print("Bridge is : "+curr+" ---- "+e.dest);
+                     System.out.println("Bridge is : "+curr+" ---- "+e.dest);
                  }
             }else {
                 low[curr] = Math.min(low[curr],dt[e.dest]);
@@ -71,5 +71,6 @@ public class Bridge_In_Graph {
         int V = 5;
         ArrayList<Edge>graph[] = new ArrayList[V];
         createGraph(graph);
+        getBridge(graph,V);
     }
 }

@@ -32,6 +32,40 @@ public class Bridge_In_Graph {
 
         graph[4].add(new Edge(4,3));
     }
+
+    public static void dfs(ArrayList<Edge>graph[],int curr,boolean vis[],int dt[],int low[],int time,int par){
+        vis[curr] = true;
+        dt[curr] = low[curr] = ++time;
+        for(int i  = 0; i<graph[curr].size();i++){
+            Edge e = graph[curr].get(i);
+
+            if(e.dest == par){
+                continue;
+            } else if (!vis[e.dest]) {
+                dfs(graph,e.dest,vis,dt,low,time,curr);
+                low[curr] = Math.min(low[curr],low[e.dest]);
+                 if(dt[curr] < low[e.dest]){
+                     System.out.print("Bridge is : "+curr+" ---- "+e.dest);
+                 }
+            }else {
+                low[curr] = Math.min(low[curr],dt[e.dest]);
+            }
+        }
+
+    }
+    public static void getBridge(ArrayList<Edge>graph[], int V){
+        int dt[] = new int[V];
+        int low[] = new int[V];
+        int time = 0;
+        boolean vis[] = new boolean[V];
+        for(int i = 0; i<V;i++){
+            if(!vis[i]){
+                dfs(graph,i,vis,dt,low,time,-1);
+            }
+        }
+    }
+
+
     public static void main(String[] args) {
 
         int V = 5;

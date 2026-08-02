@@ -39,6 +39,7 @@ public class Bridge_In_Graph {
         for(int i  = 0; i<graph[curr].size();i++){
             Edge e = graph[curr].get(i);
 
+
             if(e.dest == par){
                 continue;
             } else if (!vis[e.dest]) {
@@ -71,6 +72,7 @@ public class Bridge_In_Graph {
         int V = 5;
         ArrayList<Edge>graph[] = new ArrayList[V];
         createGraph(graph);
+
         getBridge(graph,V);
     }
 }

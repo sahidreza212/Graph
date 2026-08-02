@@ -31,7 +31,34 @@ public class Articulation_Point {
         graph[4].add(new Edge(4,3));
     }
 
-    public static void dfs(ArrayList<Edge>)
+    public static void dfs(ArrayList<Edge>graph[],int curr,int dt[],
+             int low[], int time, boolean vis[] , boolean ap[] , int par){
+
+        vis[curr] = true;
+        dt[curr] = low[curr] = ++time;
+        int children = 0;
+        for(int i= 0;i< graph[curr].size();i++){
+            Edge e = graph[curr].get(i);
+
+            int neigh = e.dest;
+            if(par == neigh){
+                continue;
+            } else if (vis[neigh]) {
+                low[curr] = Math.min(low[curr], dt[curr]);
+            }else {
+                dfs(graph,neigh,dt,low,time,vis,ap,curr);
+                low[curr] = Math.min(low[curr],low[neigh]);
+                if(dt[curr] <= low[neigh] && par != -1){
+                    ap[curr] = true;
+                }
+                children++;
+            }
+        }
+
+        if(par == -1 && children > 1){
+            ap[curr] = true;
+        }
+    }
     public static void getAP(ArrayList<Edge>graph[], int V){
         int dt[] = new int[V];
         int low[] = new int[V];
@@ -41,7 +68,7 @@ public class Articulation_Point {
 
         for(int i = 0; i<V;i++){
             if(!vis[i]){
-                dfs();
+                dfs(graph,i,dt,low,time,vis,ap,-1);
             }
         }
     }

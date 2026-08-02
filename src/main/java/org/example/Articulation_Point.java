@@ -30,6 +30,21 @@ public class Articulation_Point {
 
         graph[4].add(new Edge(4,3));
     }
+
+    public static void dfs(ArrayList<Edge>)
+    public static void getAP(ArrayList<Edge>graph[], int V){
+        int dt[] = new int[V];
+        int low[] = new int[V];
+        int time = 0;
+        boolean vis[] = new boolean[V];
+        boolean ap[] = new boolean[V];
+
+        for(int i = 0; i<V;i++){
+            if(!vis[i]){
+                dfs();
+            }
+        }
+    }
     public static void main(String[] args) {
 
         int V = 5;
